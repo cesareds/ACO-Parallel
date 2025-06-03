@@ -11,11 +11,15 @@
 # =======================================================
 
 
+
+
+
 def ACO_MetaHeuristic():
     while not terminated:
         generateSolutions()
         daemonActions()
         pheromoneUpdate()
+    pass
 
 
 
@@ -28,4 +32,21 @@ def daemonActions():
 def pheromoneUpdate():
     # Implement the logic to update pheromone trails based on the solutions generated
     pass
+
+
+
+
+
+# Criação da grade (longitude e latitude)
+lons = range(-180, 180)
+lats = range(-90, 90)
+
+terra_cartesiano = []
+for lon in lons:
+    for lat in lats:
+        terra_cartesiano.append((lon, lat))
+
+print(terra_cartesiano)  # Exibe os primeiros 10 pontos
+
+
 
