@@ -1,0 +1,2 @@
+class Ant:
+    pass
