@@ -11,7 +11,7 @@
 # =======================================================
 
 
-
+import random
 
 
 def ACO_MetaHeuristic():
@@ -37,16 +37,20 @@ def pheromoneUpdate():
 
 
 
-# Criação da grade (longitude e latitude)
 lons = range(-180, 180)
 lats = range(-90, 90)
+target_lat = random.randint(-90, 90)
+target_lon = random.randint(-180, 180)
+target = (target_lon, target_lat)
 
 terra_cartesiano = []
 for lon in lons:
     for lat in lats:
         terra_cartesiano.append((lon, lat))
+# Print the generated Cartesian coordinates of the Earth
 
-print(terra_cartesiano)  # Exibe os primeiros 10 pontos
+
+print(terra_cartesiano)  
 
 
 
