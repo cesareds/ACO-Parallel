@@ -1,2 +1,2 @@
-class Ant:
+class Environment:
     pass
