@@ -6,17 +6,23 @@ class Ant:
     The drones from the original problem are represented as ants.
     Each ant has a current position, a list of visited nodes, and a tabu list.
     """
-    def __init__(self, start: tuple, goal: tuple, alpha: float) -> None:
+    def __init__(self, start: tuple, goal: tuple, alpha: float, beta: float) -> None:
         self.goal           = goal
         self.start          = start
         self.cur_position   = (self.start[0], self.start[1])
         self.visited_nodes  = [self.cur_position]
         self.alpha          = alpha
+        self.beta           = beta
         self.reached_goal   = False
 
     @property
     def cost(self) -> int:
         return len(self.visited_nodes)
+    
+
+    def manhattan_distance(self, a: tuple, b: tuple) -> float:
+        return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
 
     def reset(self) -> None:
         self.cur_position   = (self.start[0], self.start[1])
@@ -48,7 +54,10 @@ class Ant:
 
         for node in allowed_nodes:
             tau = self.get_pheromone(self.cur_position, node, grid)
-            prob = (tau ** self.alpha)
+            eta = 1 / (self.manhattan_distance(self.cur_position, node))   # Evita divisão por zero
+            # print(f"ETA {eta} - {self.cur_position}")
+            prob = (tau ** self.alpha) * (eta ** self.beta)
+
             probabilities.append(prob)
             denominator += prob
 
@@ -74,9 +83,19 @@ class Ant:
         for dx, dy in directions:
             new_x, new_y = x + dx, y + dy
 
-            if 0 <= new_x < len(grid) and 0 <= new_y < len(grid[0]):
-                if grid[new_x][new_y]["value"] >= 0 and (new_x, new_y) not in self.visited_nodes:
-                    neighbors.append((new_x, new_y))
+            if new_x < 0:
+                new_x = len(grid) - 1
+            elif new_x >= len(grid):
+                new_x = 0
+            if new_y < 0:
+                new_y = len(grid[0]) - 1
+            elif new_y >= len(grid[0]):
+                new_y = 0
+
+            # print(f"New position: ({new_x}, {new_y}) from current position: ({x}, {y})")
+            # print(f"Valor da posicao {grid[new_x][new_y]['value']}")
+            if grid[new_x][new_y]["value"] >= 0 and (new_x, new_y) not in self.visited_nodes:
+                neighbors.append((new_x, new_y))
 
         return neighbors
 
@@ -110,7 +129,6 @@ class Ant:
 
     def choose_move(self, grid: list[list[dict]]) -> None:
         if self.reached_goal:
-            self.update_pheromone(grid, Q=1.0)  
             return False
 
         neighbors = self.get_neighbors(grid)
@@ -136,6 +154,8 @@ class Ant:
         while keep_going:
             i += 1
             keep_going = self.choose_move(grid=grid)
+    
+        return self.cost
             # print(f"Step {i}: Ant at {self.cur_position}, visited: {self.visited_nodes}")
 
     def __str__(self) -> str:

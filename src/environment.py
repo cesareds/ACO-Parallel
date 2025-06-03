@@ -1,5 +1,6 @@
 from src.ant import Ant
 import json
+import random
 
 class Environment:
     def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_obstacles: int) -> None:
@@ -14,7 +15,7 @@ class Environment:
             row = []
             for _ in range(self.number_cols):
                 row.append({
-                    "value": 0, 
+                    "value": random.choice([0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0, -1]),  # 1 cell is the goal
                     "pheromones": {
                         "up":   1e-6, 
                         "down": 1e-6, 
@@ -36,6 +37,7 @@ class Environment:
                     start=(0, 0),  # Starting position can be set as needed
                     goal=(self.number_rows - 1, self.number_cols - 1),  # Goal can be set as needed
                     alpha=1.0, 
+                    beta=2.0
                 )
             ) 
 
@@ -43,12 +45,18 @@ class Environment:
         with open(filename, 'w') as f:
             json.dump(self.grid, f, indent=4)
 
-    def optimize(self, iterations=10000, evaporation_rate=0.1):
+    def optimize(self, iterations=1_000, evaporation_rate=0.1):
         for it in range(iterations):
+            costs = []
             for ant in self.ants:
                 ant.reset()
-                ant.run(self.grid)
+                cost = ant.run(self.grid)
+                # if ant.reached_goal:
+                #     costs.append([cost, ant])
 
+            # costs.sort(key=lambda x: x[0])  # Sort by cost
+            # best_ant = costs[0][1]
+            # best_ant.update_pheromone(self.grid, Q=1.0)
             for ant in self.ants:
                 if ant.reached_goal:
                     ant.update_pheromone(self.grid, Q=1.0)
@@ -59,7 +67,7 @@ class Environment:
         self.print_grid()
 
 
-    def evaporate_pheromones(self, evaporation_rate: float = 0.1):
+    def evaporate_pheromones(self, evaporation_rate: float = 0.5):
         for i in range(self.number_rows):
             for j in range(self.number_cols):
                 for direction in self.grid[i][j]["pheromones"]:
@@ -78,6 +86,8 @@ class Environment:
                     row_str += "S "
                 elif self.grid[i][j]["value"] == 1:
                     row_str += "G "
+                elif self.grid[i][j]["value"] == -1:
+                    row_str += "M"
                 elif (i, j) in visited:
                     row_str += "* "
                 else:
