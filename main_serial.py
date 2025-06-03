@@ -1,5 +1,15 @@
-import multiprocessing as mp
-from src.ant import Ant
-from src.environment import Environment
+# ============ PSEUDOCODIGO ACO da Wikipedia ============
 
-print("Starting main process...")
+# procedure ACO_MetaHeuristic is
+#     while not terminated do
+#         generateSolutions()
+#         daemonActions()
+#         pheromoneUpdate()
+#     repeat
+# end procedure
+
+# =======================================================
+
+
+
+
