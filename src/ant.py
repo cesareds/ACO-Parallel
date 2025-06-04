@@ -6,7 +6,7 @@ class Ant:
     The drones from the original problem are represented as ants.
     Each ant has a current position, a list of visited nodes, and a tabu list.
     """
-    def __init__(self, start: tuple, goal: tuple, alpha: float, beta: float) -> None:
+    def __init__(self, start: tuple, goal: tuple, alpha: float, beta: float, number_cols: int, number_rows: int) -> None:
         self.goal           = goal
         self.start          = start
         self.cur_position   = (self.start[0], self.start[1])
@@ -14,35 +14,42 @@ class Ant:
         self.alpha          = alpha
         self.beta           = beta
         self.reached_goal   = False
+        self.number_cols    = number_cols
+        self.number_rows    = number_rows
 
     @property
     def cost(self) -> int:
         return len(self.visited_nodes)
-    
 
-    def manhattan_distance(self, a: tuple, b: tuple) -> float:
-        return abs(a[0] - b[0]) + abs(a[1] - b[1])
-
+    def manhattan_distance(self, x1, y1, x2, y2) -> int:
+        dx = min(abs(x1 - x2), self.number_rows - abs(x1 - x2))
+        dy = min(abs(y1 - y2), self.number_cols - abs(y1 - y2))
+        return dx + dy
 
     def reset(self) -> None:
         self.cur_position   = (self.start[0], self.start[1])
         self.visited_nodes  = [self.cur_position]
         self.reached_goal   = False 
 
+    def get_direction(self, from_pos: tuple, to_pos: tuple) -> str | None:
+        x1, y1 = from_pos
+        x2, y2 = to_pos
+
+        if (x1 - x2) % self.number_rows == 1:
+            return "up"
+        elif (x2 - x1) % self.number_rows == 1:
+            return "down"
+        elif (y1 - y2) % self.number_cols == 1:
+            return "left"
+        elif (y2 - y1) % self.number_cols == 1:
+            return "right"
+        return None
+
     def get_pheromone(self, from_pos: tuple, to_pos: tuple, grid: list[list[dict]]) -> float:
         x1, y1 = from_pos
         x2, y2 = to_pos
-        dx, dy = x2 - x1, y2 - y1
-
-        direction = None
-        if dx == -1:
-            direction = "up"
-        elif dx == 1:
-            direction = "down"
-        elif dy == -1:
-            direction = "left"
-        elif dy == 1:
-            direction = "right"
+        
+        direction = self.get_direction(from_pos, to_pos)
 
         if direction:
             return grid[x1][y1]["pheromones"].get(direction, 1e-6)
@@ -54,8 +61,7 @@ class Ant:
 
         for node in allowed_nodes:
             tau = self.get_pheromone(self.cur_position, node, grid)
-            eta = 1 / (self.manhattan_distance(self.cur_position, node))   # Evita divisão por zero
-            # print(f"ETA {eta} - {self.cur_position}")
+            eta = 1 / (self.manhattan_distance(self.cur_position[0], self.cur_position[1], node[0], node[1]))   
             prob = (tau ** self.alpha) * (eta ** self.beta)
 
             probabilities.append(prob)
@@ -67,13 +73,13 @@ class Ant:
         return [p / denominator for p in probabilities]
 
     def move(self, next_position: tuple, grid: list[list[dict]]) -> None:
+        # print(f"Ant moves from {self.cur_position} to {next_position}")
         self.cur_position = next_position
         self.visited_nodes.append(next_position)
 
         x, y = next_position
         if grid[x][y]["value"] == 1:
             self.reached_goal = True
-            # Atualiza feromônios ao alcançar o objetivo
 
     def get_neighbors(self, grid: list[list[dict]]) -> list[tuple]:
         x, y = self.cur_position
@@ -84,16 +90,15 @@ class Ant:
             new_x, new_y = x + dx, y + dy
 
             if new_x < 0:
-                new_x = len(grid) - 1
-            elif new_x >= len(grid):
+                new_x = self.number_rows - 1
+            elif new_x >= self.number_rows:
                 new_x = 0
             if new_y < 0:
-                new_y = len(grid[0]) - 1
-            elif new_y >= len(grid[0]):
+                new_y = self.number_cols - 1
+            elif new_y >= self.number_cols:
                 new_y = 0
 
-            # print(f"New position: ({new_x}, {new_y}) from current position: ({x}, {y})")
-            # print(f"Valor da posicao {grid[new_x][new_y]['value']}")
+
             if grid[new_x][new_y]["value"] >= 0 and (new_x, new_y) not in self.visited_nodes:
                 neighbors.append((new_x, new_y))
 
@@ -111,17 +116,19 @@ class Ant:
 
             x1, y1 = from_node
             x2, y2 = to_node
-            dx, dy = x2 - x1, y2 - y1
 
-            direction = None
-            if dx == -1:
-                direction = "up"
-            elif dx == 1:
+            dx = (x2 - x1) % self.number_rows
+            dy = (y2 - y1) % self.number_cols
+
+            if dx == 1 or dx == -(self.number_rows - 1):
                 direction = "down"
-            elif dy == -1:
-                direction = "left"
-            elif dy == 1:
+            elif dx == self.number_rows - 1 or dx == -1:
+                direction = "up"
+            elif dy == 1 or dy == -(self.number_cols - 1):
                 direction = "right"
+            elif dy == self.number_cols - 1 or dy == -1:
+                direction = "left"
+
 
             if direction:
                 current_pheromone = grid[x1][y1]["pheromones"].get(direction, 0)

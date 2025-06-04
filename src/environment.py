@@ -15,7 +15,7 @@ class Environment:
             row = []
             for _ in range(self.number_cols):
                 row.append({
-                    "value": random.choice([0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0, -1]),  # 1 cell is the goal
+                    "value": random.choice([0, 0, 0, 0, 0, -1]),  # 1 cell is the goal
                     "pheromones": {
                         "up":   1e-6, 
                         "down": 1e-6, 
@@ -37,7 +37,9 @@ class Environment:
                     start=(0, 0),  # Starting position can be set as needed
                     goal=(self.number_rows - 1, self.number_cols - 1),  # Goal can be set as needed
                     alpha=1.0, 
-                    beta=2.0
+                    beta=2.0,
+                    number_cols=self.number_cols,
+                    number_rows=self.number_rows
                 )
             ) 
 
@@ -45,21 +47,18 @@ class Environment:
         with open(filename, 'w') as f:
             json.dump(self.grid, f, indent=4)
 
-    def optimize(self, iterations=1_000, evaporation_rate=0.1):
+    def optimize(self, iterations=10_000, evaporation_rate=0.1):
         for it in range(iterations):
             costs = []
             for ant in self.ants:
+                # print("----------------------- new ant -----------------------")
                 ant.reset()
                 cost = ant.run(self.grid)
-                # if ant.reached_goal:
-                #     costs.append([cost, ant])
+                
+            best_ant = min((ant for ant in self.ants if ant.reached_goal), key=lambda a: a.cost, default=None)
+            if best_ant:
+                best_ant.update_pheromone(self.grid, Q=1.0)
 
-            # costs.sort(key=lambda x: x[0])  # Sort by cost
-            # best_ant = costs[0][1]
-            # best_ant.update_pheromone(self.grid, Q=1.0)
-            for ant in self.ants:
-                if ant.reached_goal:
-                    ant.update_pheromone(self.grid, Q=1.0)
 
             self.evaporate_pheromones(evaporation_rate)
 
@@ -87,7 +86,7 @@ class Environment:
                 elif self.grid[i][j]["value"] == 1:
                     row_str += "G "
                 elif self.grid[i][j]["value"] == -1:
-                    row_str += "M"
+                    row_str += "M "
                 elif (i, j) in visited:
                     row_str += "* "
                 else:
