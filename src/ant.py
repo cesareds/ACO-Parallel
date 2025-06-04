@@ -3,8 +3,8 @@ import random
 
 class Ant:
     """
-    The drones from the original problem are represented as ants.
-    Each ant has a current position, a list of visited nodes, and a tabu list.
+    Ants represent the drones from the original problem.
+    Each ant has a current position, a list of visited nodes, and logic for movement and pheromone updates.
     """
     def __init__(self, start: tuple, goal: tuple, alpha: float, beta: float, number_cols: int, number_rows: int) -> None:
         self.goal           = goal
@@ -53,7 +53,7 @@ class Ant:
 
         if direction:
             return grid[x1][y1]["pheromones"].get(direction, 1e-6)
-        return 1e-6  # movimento inválido
+        return 1e-6  # invalid movement
 
     def neighbors_probabilities(self, allowed_nodes: list[tuple], grid: list[list[dict]]) -> list[float]:
         probabilities = []
@@ -73,7 +73,7 @@ class Ant:
         return [p / denominator for p in probabilities]
 
     def move(self, next_position: tuple, grid: list[list[dict]]) -> None:
-        # print(f"Ant moves from {self.cur_position} to {next_position}")
+        # Update current position and check if goal was reached
         self.cur_position = next_position
         self.visited_nodes.append(next_position)
 
@@ -82,6 +82,7 @@ class Ant:
             self.reached_goal = True
 
     def get_neighbors(self, grid: list[list[dict]]) -> list[tuple]:
+        # Get all valid neighbor positions that are not obstacles or already visited
         x, y = self.cur_position
         neighbors = []
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
@@ -89,6 +90,7 @@ class Ant:
         for dx, dy in directions:
             new_x, new_y = x + dx, y + dy
 
+            # Apply wrapping (toroidal grid)
             if new_x < 0:
                 new_x = self.number_rows - 1
             elif new_x >= self.number_rows:
@@ -98,7 +100,6 @@ class Ant:
             elif new_y >= self.number_cols:
                 new_y = 0
 
-
             if grid[new_x][new_y]["value"] >= 0 and (new_x, new_y) not in self.visited_nodes:
                 neighbors.append((new_x, new_y))
 
@@ -106,9 +107,9 @@ class Ant:
 
     def update_pheromone(self, grid: list[list[dict]], Q: float) -> None:
         """
-        Atualiza os feromônios nas arestas percorridas pela formiga.
-        grid: matriz com valores e feromônios
-        Q: constante para atualização
+        Updates the pheromone levels on the edges traversed by the ant.
+        :param grid: the environment grid
+        :param Q: pheromone deposit constant
         """
         for i in range(len(self.visited_nodes) - 1):
             from_node = self.visited_nodes[i]
@@ -128,13 +129,14 @@ class Ant:
                 direction = "right"
             elif dy == self.number_cols - 1 or dy == -1:
                 direction = "left"
-
+            else:
+                direction = None
 
             if direction:
                 current_pheromone = grid[x1][y1]["pheromones"].get(direction, 0)
                 grid[x1][y1]["pheromones"][direction] = current_pheromone + Q / self.cost
 
-    def choose_move(self, grid: list[list[dict]]) -> None:
+    def choose_move(self, grid: list[list[dict]]) -> bool:
         if self.reached_goal:
             return False
 
@@ -147,23 +149,19 @@ class Ant:
         next_pos = random.choices(neighbors, weights=probs)[0]
         self.move(next_pos, grid)
         return True
-    
-    
 
-    def run(self, grid: list[list[dict]]) -> None:
+    def run(self, grid: list[list[dict]]) -> int:
         """
-        Método para iniciar o movimento da formiga.
-        Deve ser chamado após a inicialização da formiga.
+        Executes the ant's movement through the environment.
+        Should be called after initialization or reset.
         """
-
-        i = 0
+        step = 0
         keep_going = True
         while keep_going:
-            i += 1
+            step += 1
             keep_going = self.choose_move(grid=grid)
     
         return self.cost
-            # print(f"Step {i}: Ant at {self.cur_position}, visited: {self.visited_nodes}")
 
     def __str__(self) -> str:
         return f"Ant at {self.cur_position}, visited: {self.visited_nodes}, tour length: {self.cost}"

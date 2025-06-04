@@ -3,7 +3,7 @@ import json
 import random
 
 class Environment:
-    def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_obstacles: int) -> None:
+    def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_obstacles: int, load_grid: bool = False) -> None:
         self.grid = []
         self.number_cols = number_cols
         self.number_rows = number_rows
@@ -11,68 +11,74 @@ class Environment:
         self.number_process = number_process
         self.number_obstacles = number_obstacles
 
-        for _ in range(self.number_rows):
-            row = []
-            for _ in range(self.number_cols):
-                row.append({
-                    "value": random.choice([0, 0, 0, 0, 0, -1]),  # 1 cell is the goal
-                    "pheromones": {
-                        "up":   1e-6, 
-                        "down": 1e-6, 
-                        "left": 1e-6, 
-                        "right": 1e-6
-                    }
-                })
-            self.grid.append(row)
+        # Load grid from file or create a new one
+        if load_grid:
+            self.load_grid_from_json(f"grid_{self.number_rows}x{self.number_cols}.json")
+        else:
+            for _ in range(self.number_rows):
+                row = []
+                for _ in range(self.number_cols):
+                    row.append({
+                        "value": random.choice([0, 0, 0, 0, 0, -1]),  # obstacle = -1
+                        "pheromones": {
+                            "up":   1e-6,
+                            "down": 1e-6,
+                            "left": 1e-6,
+                            "right": 1e-6
+                        }
+                    })
+                self.grid.append(row)
 
-        # Agora fora do loop: define a célula final como objetivo
-        self.grid[-1][-1]["value"] = 1
+            # Set the goal cell at the bottom-right corner
+            self.grid[-1][-1]["value"] = 1
 
-
-        # Initialize the ants' positions and goals
+        # Initialize ants with start and goal positions
         self.ants = []
         for i in range(self.number_ants):
             self.ants.append(
                 Ant(
-                    start=(0, 0),  # Starting position can be set as needed
-                    goal=(self.number_rows - 1, self.number_cols - 1),  # Goal can be set as needed
-                    alpha=1.0, 
+                    start=(0, 0),
+                    goal=(self.number_rows - 1, self.number_cols - 1),
+                    alpha=1.0,
                     beta=2.0,
                     number_cols=self.number_cols,
                     number_rows=self.number_rows
                 )
-            ) 
+            )
 
     def save_grid_to_json(self, filename: str) -> None:
         with open(filename, 'w') as f:
             json.dump(self.grid, f, indent=4)
 
+    def load_grid_from_json(self, filename: str) -> None:
+        with open(filename, 'r') as f:
+            self.grid = json.load(f)
+
+        self.number_rows = len(self.grid)
+        self.number_cols = len(self.grid[0]) if self.grid else 0
+
     def optimize(self, iterations=10_000, evaporation_rate=0.1):
         for it in range(iterations):
-            costs = []
             for ant in self.ants:
-                # print("----------------------- new ant -----------------------")
                 ant.reset()
-                cost = ant.run(self.grid)
-                
+                ant.run(self.grid)
+
+            # Select the best ant that reached the goal
             best_ant = min((ant for ant in self.ants if ant.reached_goal), key=lambda a: a.cost, default=None)
             if best_ant:
                 best_ant.update_pheromone(self.grid, Q=1.0)
 
-
             self.evaporate_pheromones(evaporation_rate)
 
-        print("\nGrid final:")
+        print("\nFinal grid:")
         self.print_grid()
         self.save_grid_to_json(f"grid_{self.number_rows}x{self.number_cols}.json")
-
 
     def evaporate_pheromones(self, evaporation_rate: float = 0.5):
         for i in range(self.number_rows):
             for j in range(self.number_cols):
                 for direction in self.grid[i][j]["pheromones"]:
                     self.grid[i][j]["pheromones"][direction] *= (1 - evaporation_rate)
-
 
     def print_grid(self):
         visited = set()
