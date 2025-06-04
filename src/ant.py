@@ -31,7 +31,7 @@ class Ant:
         self.visited_nodes  = [self.cur_position]
         self.reached_goal   = False 
 
-    def get_direction(self, from_pos: tuple, to_pos: tuple) -> str | None:
+    def get_direction(self, from_pos: tuple, to_pos: tuple):
         x1, y1 = from_pos
         x2, y2 = to_pos
 
