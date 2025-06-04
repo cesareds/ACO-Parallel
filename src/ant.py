@@ -47,7 +47,6 @@ class Ant:
 
     def get_pheromone(self, from_pos: tuple, to_pos: tuple, grid: list[list[dict]]) -> float:
         x1, y1 = from_pos
-        x2, y2 = to_pos
         
         direction = self.get_direction(from_pos, to_pos)
 
@@ -116,21 +115,9 @@ class Ant:
             to_node = self.visited_nodes[i + 1]
 
             x1, y1 = from_node
-            x2, y2 = to_node
+                
+            direction = self.get_direction(from_node, to_node)
 
-            dx = (x2 - x1) % self.number_rows
-            dy = (y2 - y1) % self.number_cols
-
-            if dx == 1 or dx == -(self.number_rows - 1):
-                direction = "down"
-            elif dx == self.number_rows - 1 or dx == -1:
-                direction = "up"
-            elif dy == 1 or dy == -(self.number_cols - 1):
-                direction = "right"
-            elif dy == self.number_cols - 1 or dy == -1:
-                direction = "left"
-            else:
-                direction = None
 
             if direction:
                 current_pheromone = grid[x1][y1]["pheromones"].get(direction, 0)
@@ -142,7 +129,7 @@ class Ant:
 
         neighbors = self.get_neighbors(grid)
         if not neighbors:
-            print(f"No valid moves from {self.cur_position}.")
+            # print(f"No valid moves from {self.cur_position}.")
             return False
 
         probs = self.neighbors_probabilities(neighbors, grid)

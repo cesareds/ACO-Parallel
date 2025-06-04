@@ -1,15 +1,5 @@
 from src.environment import Environment
 """
-============ PSEUDOCODIGO ACO da Wikipedia ============
-
-procedure ACO_MetaHeuristic is
-    while not terminated do
-        generateSolutions()
-        daemonActions()
-        pheromoneUpdate()
-    repeat
-end procedure
-
 ============ PSEUDOCODIGO ACO ============
 
 Initialize pheromone trails τ on all edges to a small positive value
@@ -54,10 +44,10 @@ Serial = Parallel with 1 process !
 """
 
 def main():
-    GRID_SCALE = (90, 90)
-    NUM_ANTS = 10
-    NUM_ITERATIONS = 10_000
-    GOAL = (30, 30)
+    GRID_SCALE = (20, 20)
+    NUM_ANTS = 100_000
+    NUM_ITERATIONS = 100_000
+    GOAL = (10, 10)
 
     env = Environment(GRID_SCALE[0], GRID_SCALE[1], NUM_ANTS, 1, 1, NUM_ITERATIONS, GOAL[0], GOAL[1])
     env.optimize()
