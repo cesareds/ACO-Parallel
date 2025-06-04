@@ -64,6 +64,7 @@ class Environment:
 
         print("\nGrid final:")
         self.print_grid()
+        self.save_grid_to_json(f"grid_{self.number_rows}x{self.number_cols}.json")
 
 
     def evaporate_pheromones(self, evaporation_rate: float = 0.5):

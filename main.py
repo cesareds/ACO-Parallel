@@ -54,7 +54,7 @@ Serial = Parallel with 1 process !
 """
 
 def main():
-    env = Environment(5, 8, 10, 1, 1)
+    env = Environment(100, 100, 10, 1, 1)
     env.optimize()
 
 if __name__ == "__main__":
