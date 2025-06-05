@@ -45,13 +45,17 @@ Serial = Parallel with 1 process !
 """
 
 def main():
-    NUM_PROCESS = int(sys.argv[-1]) if len(sys.argv) > 1 else 1 
+    if len(sys.argv) < 6:
+        print("Bad usage! Must receive 6 arguments")
+        exit
+
+    NUM_PROCESS = int(sys.argv[1]) if len(sys.argv) > 1 else 1 
     print(NUM_PROCESS)
 
-    GRID_SCALE = (50, 50)
-    NUM_ANTS = 500
-    NUM_ITERATIONS = 500
-    GOAL = (25, 25)
+    GRID_SCALE = (int(sys.argv[2]), int(sys.argv[3]))
+    NUM_ANTS = int(sys.argv[4])
+    NUM_ITERATIONS = int(sys.argv[5])
+    GOAL = (int(int(sys.argv[2])/2), int(int(sys.argv[3])/2))
 
     env = Environment(
             number_cols=GRID_SCALE[0], 

@@ -1,5 +1,5 @@
 Serial:
-126,504 segundos
+4,197 segundos
 
 Multiprocessing:
-37,168 segundos
+1,892 segundos
