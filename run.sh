@@ -7,12 +7,11 @@ ARQUIVO="tempos.txt"
 # Limpa o arquivo antes de escrever
 > "$ARQUIVO"
 
-echo "Serial:" | tee -a "$ARQUIVO"
-exec_time=$( { time python3 main.py 1 50 50 100 100 | tee /dev/tty > /dev/null; } 2>&1 )
-echo "$exec_time segundos" | tee -a "$ARQUIVO"
-
-echo | tee -a "$ARQUIVO"
-
-echo "Multiprocessing:" | tee -a "$ARQUIVO"
-exec_time=$( { time python3 main.py $PROCESSADORES 50 50 100 100 | tee /dev/tty > /dev/null; } 2>&1 )
-echo "$exec_time segundos" | tee -a "$ARQUIVO"
+for j in $(seq 1 $PROCESSADORES); do
+    echo "Rodando com $j processo(s)" | tee -a "$ARQUIVO"
+    for i in $(seq 1 10); do
+        exec_time=$( { time python3 main.py $j 180 360 1000 50_000 > /dev/null; } 2>&1 )
+        echo "$exec_time" | tee -a "$ARQUIVO"
+    done
+    echo | tee -a "$ARQUIVO"
+done

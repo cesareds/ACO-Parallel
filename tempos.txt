@@ -1,5 +1,1 @@
-Serial:
-4,197 segundos
-
-Multiprocessing:
-1,892 segundos
+Rodando com 1 processo(s)

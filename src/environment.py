@@ -42,7 +42,7 @@ class Environment:
                 self.grid.append(row)
 
             # Set the goal cell at the bottom-right corner
-            self.grid[goalx][goaly]["value"] = 1
+            self.grid[goaly][goalx]["value"] = 1
 
         # Initialize ants with start and goal positions
         self.ants = []
