@@ -1,0 +1,5 @@
+Serial:
+126,504 segundos
+
+Multiprocessing:
+37,168 segundos

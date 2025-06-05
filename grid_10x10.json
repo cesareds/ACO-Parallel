@@ -3,367 +3,91 @@
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 0.5294117647058821
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 9.090910090909095,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 0.5294117647058821,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": -1,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        }
-    ],
-    [
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        }
-    ],
-    [
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        }
-    ],
-    [
-        {
-            "value": -1,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": -1,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 9.090910090909095,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 9.090910090909095,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 9.090910090909095,
+                "right": 1e-06
             }
         }
     ],
@@ -371,91 +95,91 @@
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 0.5294117647058821,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 9.090910090909095,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 0.5294117647058821,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 0.5294117647058821,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 0.5294117647058821,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 0.5294117647058821,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         }
     ],
@@ -463,183 +187,459 @@
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 0.5294117647058821,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 9.090910090909095,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        }
+    ],
+    [
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 9.090910090909095,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 9.090910090909095,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 9.090910090909095,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        }
+    ],
+    [
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 9.090910090909095,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        }
+    ],
+    [
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": -1,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 1,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 0.5294117647058821,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 0.5294117647058821,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 0.5294117647058821,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         }
     ],
     [
         {
-            "value": 0,
+            "value": -1,
             "pheromones": {
-                "up": 0.5294117647058821,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": -1,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         }
     ],
@@ -647,91 +647,91 @@
         {
             "value": 0,
             "pheromones": {
-                "up": 0.5294117647058821,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 0.5294117647058821,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         }
     ],
@@ -739,91 +739,91 @@
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 0.5294117647058821,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
+            }
+        },
+        {
+            "value": 0,
+            "pheromones": {
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": -1,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": -1,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
-            }
-        },
-        {
-            "value": 0,
-            "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         }
     ],
@@ -831,91 +831,91 @@
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 0.5294117647058821,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         },
         {
             "value": 0,
             "pheromones": {
-                "up": 2.5e-323,
-                "down": 2.5e-323,
-                "left": 2.5e-323,
-                "right": 2.5e-323
+                "up": 1e-06,
+                "down": 1e-06,
+                "left": 1e-06,
+                "right": 1e-06
             }
         }
     ]

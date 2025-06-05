@@ -1,3 +1,4 @@
+import sys
 from src.environment import Environment
 """
 ============ PSEUDOCODIGO ACO ============
@@ -44,13 +45,29 @@ Serial = Parallel with 1 process !
 """
 
 def main():
-    GRID_SCALE = (20, 20)
-    NUM_ANTS = 100_000
-    NUM_ITERATIONS = 100_000
-    GOAL = (10, 10)
+    NUM_PROCESS = int(sys.argv[-1]) if len(sys.argv) > 1 else 1 
+    print(NUM_PROCESS)
 
-    env = Environment(GRID_SCALE[0], GRID_SCALE[1], NUM_ANTS, 1, 1, NUM_ITERATIONS, GOAL[0], GOAL[1])
-    env.optimize()
+    GRID_SCALE = (50, 50)
+    NUM_ANTS = 500
+    NUM_ITERATIONS = 500
+    GOAL = (25, 25)
+
+    env = Environment(
+            number_cols=GRID_SCALE[0], 
+            number_rows=GRID_SCALE[1], 
+            number_ants=NUM_ANTS, 
+            number_process=NUM_PROCESS,
+            number_obstacles=1, 
+            number_iterations=NUM_ITERATIONS, 
+            goalx=GOAL[0], 
+            goaly=GOAL[1],
+            load_grid=False
+        )
+    if(NUM_PROCESS == 1):
+        env.optimize()
+    else:
+        env.optimize_mp_pipes_n_queues()
 
 if __name__ == "__main__":
     main()

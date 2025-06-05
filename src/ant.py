@@ -151,4 +151,4 @@ class Ant:
         return self.cost
 
     def __str__(self) -> str:
-        return f"Ant at {self.cur_position}, visited: {self.visited_nodes}, tour length: {self.cost}"
+        return f"Ant at {self.cur_position}, visited: {self.visited_nodes}, Cost: {self.cost}"
