@@ -1,0 +1,5 @@
+PWD /Users/cesardesouza/Documents/Disciplinas 📚/2025_1/🧠 IAR -  INTELIGÊNCIA ARTIFICIAL - RAFAEL STUBS PARPINELLI/Simulated-Annealing/relatorio/template-latex
+INPUT /usr/local/texlive/2025/texmf.cnf
+INPUT /usr/local/texlive/2025/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt
+OUTPUT texput.log

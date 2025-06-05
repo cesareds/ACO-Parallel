@@ -1,0 +1,21 @@
+\begin{thebibliography}{}
+
+\bibitem[Bertsimas and Tsitsiklis 1993]{bertsimas1993simulated}
+Bertsimas, D. and Tsitsiklis, J. (1993).
+\newblock Simulated annealing.
+\newblock {\em Statistical Science}, 8(1):10--15.
+
+\bibitem[Kokash nd]{kokashHeuristicIntro}
+Kokash, N. (n.d.).
+\newblock An introduction to heuristic algorithms.
+\newblock Department of Informatics and Telecommunications, University of
+  Trento, Italy.
+\newblock \texttt{kokash@dit.unitn.it}.
+
+\bibitem[Metropolis et~al. 1953]{metropolis1953equation}
+Metropolis, N., Rosenbluth, A.~W., Rosenbluth, M.~N., Teller, A.~H., and
+  Teller, E. (1953).
+\newblock Equation of state calculations by fast computing machines.
+\newblock {\em The journal of chemical physics}, 21(6):1087--1092.
+
+\end{thebibliography}

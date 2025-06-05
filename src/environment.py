@@ -3,6 +3,7 @@ import json
 import random
 from colorama import init, Fore, Style
 import multiprocessing as mp
+import pickle
 
 class Environment:
     def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_obstacles: int, number_iterations: int, goalx: int, goaly: int, load_grid: bool) -> None:
@@ -99,7 +100,8 @@ class Environment:
     def print_grid(self, ant):
         init()
         visited = set()
-        visited.update(ant.visited_nodes)
+        if ant is not None:
+            visited.update(ant.visited_nodes)
 
         output_lines = []  # Armazena as linhas para salvar no .txt
 
@@ -204,22 +206,26 @@ class Environment:
         # self.save_grid_to_json(f"grid_{self.number_rows}x{self.number_cols}.json")
 
 def worker_pipie(ants, grid, id, connection_to_main):
+    try:
+        while True:
+            for ant in ants:
+                ant.reset()
+                ant.run(grid)
 
-    while True:
-        for ant in ants:
-            ant.reset()
-            ant.run(grid)
+            # Select the best ant that reached the goal
+            best_ant = min((ant for ant in ants if ant.reached_goal), key=lambda a: a.cost, default=None)
 
-        # Select the best ant that reached the goal
-        best_ant = min((ant for ant in ants if ant.reached_goal), key=lambda a: a.cost, default=None)
+            try:
+                connection_to_main.send(best_ant if best_ant else ants[-1])
+            except (BrokenPipeError, EOFError):
+                # Pipe fechado, encerra o processo
+                return
 
-        connection_to_main.send(best_ant if best_ant else ants[-1])
-
-        grid = connection_to_main.recv()
-
-        if grid == None:
-            # Se grid for None, significa que acabou as iterações e o processo pode morrer
-            return
+            grid = connection_to_main.recv()
+            if grid is None:
+                return
+    except (BrokenPipeError, EOFError):
+        return
 
 def worker(args):
     ants, grid, id = args

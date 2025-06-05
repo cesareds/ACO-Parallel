@@ -1,1 +1,36 @@
 Rodando com 1 processo(s)
+Execução 1:
+349.253
+Execução 2:
+353.946
+Execução 3:
+239.518
+
+Rodando com 2 processo(s)
+Execução 1:
+215.115
+Execução 2:
+211.049
+Execução 3:
+177.038
+
+Rodando com 3 processo(s)
+Execução 1:
+144.762
+Execução 2:
+156.824
+Execução 3:
+168.568
+
+Rodando com 4 processo(s)
+Execução 1:
+156.304
+Execução 2:
+151.333
+Execução 3:
+168.455
+
+Rodando com 5 processo(s)
+Execução 1:
+164.980
+Execução 2:

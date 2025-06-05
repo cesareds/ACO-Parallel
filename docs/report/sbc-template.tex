@@ -1,0 +1,243 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}  
+
+     
+\sloppy
+
+\title{Ant Colony Optimization\\ Uma abordagem em paralelo}
+
+\author{César Eduardo de Souza\inst{1},\\ Guilherme Diel\inst{1}}
+
+
+  \address{Departamento de Ciência da Computação \\ Universidade do Estado de Santa Catarina
+  (UDESC) -- Joinville, SC -- Brazil
+  \email{\{cesar.souza, guilherme.diel\}@edu.udesc.br}
+}
+
+\begin{document} 
+
+\maketitle
+
+     
+\begin{resumo} 
+  
+\end{resumo}
+
+
+\section{Introdução}
+\label{sec:introducao}
+% Contextualização do problema/tarefa e revisão da literatura.
+
+
+% Justificativa e motivação.
+% Objetivo.
+% Organização do texto.
+
+\section{Metodologia de Desenvolvimento}
+\label{sec:metodologia_de_desenvolvimento}
+
+O método de \textbf{Simulated Annealing} consiste em:
+\begin{enumerate}
+  
+  \item Para uma temperatura $T_i$, realizar $N$ vezes: \label{passo:1}
+  \begin{itemize}
+    \item Realizar uma perturbação aleatória no estado atual $\text{estado}_0$, gerando um novo $\text{estado}_i$
+    \item Calcular a variação de energia $\Delta E = E(\text{estado}_i) - E(\text{estado}_0)$
+    \item Se $\Delta E < 0$ (melhora na energia), aceitar a transição ($\text{estado}_i \rightarrow \text{estado}_0$)
+    \item Caso contrário, aceitar a transição com probabilidade P_{\text{accept}}($T_i$)
+  \end{itemize}
+  
+  \item Critério de parada:
+  \begin{itemize} \label{passo:2}
+    \item Se $T_i \leq T_f$ (temperatura final) ou o sistema atingir convergência (e.g., $\Delta E \approx 0$ por $k$ iterações consecutivas)
+    \item Retornar o $\text{estado}_0$ como solução
+    \item Caso contrário, reduzir a temperatura ($T_i \leftarrow \alpha T_i$, com $0 < \alpha < 1$) e retornar ao Passo~\ref{passo:1}
+  \end{itemize}
+  \label{pseudocodigo}
+  \caption{Passo a passo do método de \textbf{Simulated Annealing}}
+\end{enumerate} 
+
+A aplicação do método de \textbf{Simulated Annealing} para a otimização do problema do SAT-3 foi realizada por meio da linguagem de programação \textit{Python}, junto com a biblioteca \textit{Numpy}.
+%
+A Figura \ref{fig:metodologia} retrata o passo a passo de como foi implementado este algoritmo.
+
+A Figura~\ref{fig:metodologia} apresenta as etapas do algoritmo, que foi implementado da seguinte maneira:
+
+\begin{enumerate}
+    \item \textbf{Inicialização}:
+    \begin{itemize}
+        \item Temperatura inicial $T_0 = 1000$
+        \item Taxa de resfriamento $\alpha = 0.99$
+        \item Temperatura final $T_f = 0.1$
+        \item Número de iterações por temperatura $N = 1000$
+        \item $SA_{max} = 1$, 5 ou 10 (limite mínimo de temperatura)
+    \end{itemize}
+    
+    \item \textbf{Iteração por temperatura}:
+    \begin{enumerate}
+        \item Gerar nova solução aleatória (modificando uma variável)
+        \item Calcular $\delta E = E_{\text{nova}} - E_{\text{atual}}$
+        \item Se $\delta E < 0$, aceitar a nova solução
+        \item Caso contrário, aceitar com probabilidade:
+        \begin{equation}
+            P_{\text{accept}} = \exp\left(-\frac{\Delta E}{T_i}\right)
+            \label{eq:probabilidade}
+        \end{equation}
+    \end{enumerate}
+    
+    \item \textbf{Resfriamento}:
+    \begin{enumerate}
+        \item Atualizar temperatura: $T_{i+1} = \alpha T_i$ \eqref{eq:resfriamento}
+        \item Verificar critério de parada:
+        \begin{itemize}
+            \item Se $T_i \leq SA_{max}$ $\rightarrow$ Parar
+            \item Caso contrário $\rightarrow$ Voltar ao passo 2
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{imgs/final_diagram.png}
+    \caption{Diagrama do algoritmo de \textbf{Simulated Annealing}}
+    \label{fig:metodologia}
+\end{figure}
+
+% descrições e justificativas das escolhas.
+% Fórmulas utilizadas, descrições e justificativas.
+
+\section{Descrição de Experimentos/Simulações e Resultados Obtidos}
+\label{sec:descicao_de_experimentos_/_simulacoes_e_resultados_obtidos}
+
+% Descrição dos experimentos
+% e configurações utilizadas.
+
+Foi com a temperatura inicial = 1000 = iterações por temperatura taa de resfriamento = 0.99 
+
+% Descrição dos resultados obtidos (Figuras, Tabelas, Gráficos).
+
+Nestas configurações foram obtidos resultados para bases de SAT-3 de 20, 100 e 250 entradas como os seguintes gráficos de convergência:% to pensando em fazer o \ref pra cada um mas sla tb
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.9\textwidth]{imgs/melhores_sa_20.png}
+  \caption{Convergência para 20 entradas}
+  \label{fig:convergencia20}
+  \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.9\textwidth]{imgs/melhores_sa_100.png}
+  \caption{Convergência para 100 entradas}
+  \label{fig:convergencia100}
+   \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.9\textwidth]{imgs/melhores_sa_250.png}
+  \caption{Convergência para 250 entradas}
+  \label{fig:convergencia250}
+  \end{figure}
+
+
+Além disso, é possível verificar a seguinte tabela com média e desvio padrão de 30 execuções do experimento, apontados pelos consecutivos boxplots.
+
+\begin{table}[H]
+\centering
+\caption{Média e Desvio Padrão dos Resultados Obtidos}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{SAMAX} & \textbf{Número de Entradas} & \textbf{Média} & \textbf{Desvio Padrão} \\ \hline
+1   & 20 & 0.80 & 0.85 \\ \hline
+5   & 20 & 0.17 & 0.53 \\ \hline
+10  & 20 & 0.03 & 0.18 \\ \hline
+1   & 100 & 12.43 & 3.09 \\ \hline
+5   & 100 & 5.67 & 1.56 \\ \hline
+10  & 100 & 3.93 & 1.48 \\ \hline
+1   & 250 & 43.53 & 6.25 \\ \hline
+5   & 250 & 16.10 & 3.29 \\ \hline
+10  & 250 & 9.93 & 2.48 \\ \hline
+
+\end{tabular}
+\label{tab:resultados}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Média e Desvio Padrão do Histórico dos Resultados Obtidos}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{SAMAX} & \textbf{Número de Entradas} & \textbf{Média} & \textbf{Desvio Padrão} \\ \hline
+    1   & 20 & 6.50 & 3.47 \\ \hline
+    5   & 20 & 7.18 & 3.39 \\ \hline
+    10  & 20 & 7.34 & 3.22 \\ \hline
+    1   & 100 & 35.14 & 11.74 \\ \hline
+    5   & 100 & 31.41 & 13.39 \\ \hline
+    10  & 100 & 30.70 & 14.16 \\ \hline
+    1   & 250 & 90.75 & 23.46 \\ \hline
+    5   & 250 & 78.44 & 30.06 \\ \hline
+    10  & 250 & 75.82 & 32.76 \\ \hline
+  
+  \end{tabular}
+  \label{tab:resultados}
+  \end{table}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.9\textwidth]{imgs/boxplot_20.png}
+  \caption{Boxplots para 20 entradas}
+  \label{fig:boxplot20}
+  \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.9\textwidth]{imgs/boxplot_100.png}
+  \caption{Boxplots para 100 entradas}
+  \label{fig:boxplot100}
+   \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.9\textwidth]{imgs/boxplot_250.png}
+  \caption{Boxplots para 250 entradas}
+  \label{fig:boxplot250}
+  \end{figure}
+
+Dessa maneira, é possível obter uma visão aprofundada da execução do algoritmo, discutida na seção a seguir.
+
+\section{Análise dos resultados obtidos.}
+\label{sec:analise_dos_resultados_obtidos}
+
+% Considerações sobre os resultados obtidos e análises críticas sobre os mesmos.
+Factualmente, torna-se óbvia a observação de que entradas menores produzem resultados limitados, assemelhando-se mais a buscas aleatórias --- principalmente com SA\_MAX em 10 --- enquanto entradas maiores produzem resultados mais satisfatórios, com uma convergência mais acentuada.
+
+Por outro lado, a convergência para 100 entradas, com SA\_MAX, traz resultados mais satisfatórios, com uma média de 3.93 e desvio padrão de 1.48, enquanto para 250 entradas a média é de 9.93 e desvio padrão de 2.48, como relatado na Tabela \ref{tab:resultados}.
+%
+Além disso, pode-se observar com os boxplots que, com o aumento do número de entradas, os resultados tornam-se mais homogêneos, relatável pelo desvio padrão, que diminui conforme o número de entradas aumenta.
+Em suma, os resultados obtidos demonstram que o algoritmo de \textbf{Simulated Annealing} é capaz de resolver o problema SAT-3, com uma convergência satisfatória e resultados consistentes, principalmente para grandes entradas, tornando possível quantizar a eficiência do teorema de Gibbs, proposto em 1953.
+
+A partir disso, surgem diversas ideias sobre o trabalho desenvolvido e direcionamentos futuros, abordados na seção a seguir.
+
+\section{Conclusões e Trabalhos Futuros}
+\label{sec:conclusoes_e_trabalhos_futuros}
+
+% Considerações sobre o trabalho desenvolvidos e identificação de direcionamentos futuros na pesquisa.
+Tendo em vista o trabalho desenvolvido, é possível concluir que o algoritmo de \textbf{Simulated Annealing} é uma ferramenta poderosa para a resolução do problema SAT-3, apresentando resultados satisfatórios e consistentes, principalmente para entradas maiores.
+
+De tal maneira, é possível identificar outras aplicações para a pesquisa em trabalhos futuros, como a aplicação do algoritmo em outros problemas NP-Hard e NP-Completo, como o \textbf{Problema do Caixeiro Viajante} ou o \textbf{Problema de Otimização de Roteamento}, pode trazer novas perspectivas e resultados interessantes.
+
+Além disso, surge o interesse em comparar esta com outras abordagens como a \textbf{Escalada de Encosta} e \textbf{Busca Tabu}, para verificar a eficiência e eficácia de cada uma delas em diferentes contextos e problemas. Dessa forma, tais comparações podem contribuir para o avanço do conhecimento na área de algoritmos heurísticos e otimização por meio de inteligência artificial, podendo usar diversas técnicas de análise de desempenho e estatística.
+
+Por fim, a implementação do algoritmo em outras linguagens de programação, como \textit{C++} ou \textit{Java}, pode trazer novas perspectivas e resultados interessantes, além de possibilitar a comparação entre diferentes implementações e otimizações, podendo usar a tal para comparar a eficiência e eficácia de cada uma delas em diferentes contextos e problemas.
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}
