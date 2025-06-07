@@ -1,36 +1,64 @@
 Rodando com 1 processo(s)
 Execução 1:
-349.253
+398.884
 Execução 2:
-353.946
+349.850
 Execução 3:
-239.518
+395.928
 
 Rodando com 2 processo(s)
 Execução 1:
-215.115
+190.141
 Execução 2:
-211.049
+169.131
 Execução 3:
-177.038
+181.864
 
 Rodando com 3 processo(s)
 Execução 1:
-144.762
+187.504
 Execução 2:
-156.824
+170.154
 Execução 3:
-168.568
+190.550
 
 Rodando com 4 processo(s)
 Execução 1:
-156.304
+152.920
 Execução 2:
-151.333
+164.697
 Execução 3:
-168.455
+143.039
 
 Rodando com 5 processo(s)
 Execução 1:
-164.980
+143.515
 Execução 2:
+143.447
+Execução 3:
+162.686
+
+Rodando com 6 processo(s)
+Execução 1:
+139.218
+Execução 2:
+162.420
+Execução 3:
+179.979
+
+Rodando com 7 processo(s)
+Execução 1:
+154.405
+Execução 2:
+163.667
+Execução 3:
+131.125
+
+Rodando com 8 processo(s)
+Execução 1:
+164.564
+Execução 2:
+171.996
+Execução 3:
+159.548
+
