@@ -72,7 +72,6 @@ class Ant:
         return [p / denominator for p in probabilities]
 
     def move(self, next_position: tuple, grid: list[list[dict]]) -> None:
-        # Update current position and check if goal was reached
         self.cur_position = next_position
         self.visited_nodes.append(next_position)
 
@@ -81,7 +80,6 @@ class Ant:
             self.reached_goal = True
 
     def get_neighbors(self, grid: list[list[dict]]) -> list[tuple]:
-        # Get all valid neighbor positions that are not obstacles or already visited
         x, y = self.cur_position
         neighbors = []
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
@@ -89,7 +87,6 @@ class Ant:
         for dx, dy in directions:
             new_x, new_y = x + dx, y + dy
 
-            # Apply wrapping (toroidal grid)
             if new_x < 0:
                 new_x = self.number_rows - 1
             elif new_x >= self.number_rows:
@@ -129,7 +126,6 @@ class Ant:
 
         neighbors = self.get_neighbors(grid)
         if not neighbors:
-            # print(f"No valid moves from {self.cur_position}.")
             return False
 
         probs = self.neighbors_probabilities(neighbors, grid)

@@ -3,16 +3,14 @@ import json
 import random
 from colorama import init, Fore, Style
 import multiprocessing as mp
-import pickle
 
 class Environment:
-    def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_obstacles: int, number_iterations: int, goalx: int, goaly: int, load_grid: bool) -> None:
+    def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_iterations: int, goalx: int, goaly: int, load_grid: bool) -> None:
         self.grid = []
         self.number_cols = number_cols
         self.number_rows = number_rows
         self.number_ants = number_ants
         self.number_process = number_process
-        self.number_obstacles = number_obstacles
         self.number_iterations = number_iterations
 
         """
@@ -42,10 +40,8 @@ class Environment:
                     })
                 self.grid.append(row)
 
-            # Set the goal cell at the bottom-right corner
             self.grid[goaly][goalx]["value"] = 1
 
-        # Initialize ants with start and goal positions
         self.ants = []
         for i in range(self.number_ants):
             self.ants.append(
@@ -78,7 +74,6 @@ class Environment:
                 ant.reset()
                 ant.run(self.grid)
 
-            # Select the best ant that reached the goal
             best_ant = min((ant for ant in self.ants if ant.reached_goal), key=lambda a: a.cost, default=None)
             if best_ant:
                 best_ant_ever = best_ant
@@ -89,7 +84,6 @@ class Environment:
             print("Cost final: ", best_ant.cost)
         print("\nFinal grid:")
         self.print_grid(best_ant_ever)
-        # self.save_grid_to_json(f"grid_{self.number_rows}x{self.number_cols}.json")
 
     def evaporate_pheromones(self, evaporation_rate: float = 0.5):
         for i in range(self.number_rows):
@@ -103,11 +97,11 @@ class Environment:
         if ant is not None:
             visited.update(ant.visited_nodes)
 
-        output_lines = []  # Armazena as linhas para salvar no .txt
+        output_lines = [] 
 
         for i in range(self.number_rows):
             row_str = ""
-            row_plain = ""  # Versão sem as cores ANSI
+            row_plain = ""  
             for j in range(self.number_cols):
                 if (i, j) == self.ants[0].start:
                     row_str += Fore.BLUE + "S " + Style.RESET_ALL
@@ -127,38 +121,10 @@ class Environment:
             print(row_str)
             output_lines.append(row_plain)
 
-        # Escreve a saída "limpa" em um arquivo .txt
         with open("grids/grid_output.txt", "w") as f:
             for line in output_lines:
                 f.write(line + "\n")
 
-    def optimize_mp(self):
-        ants_per_process = int(self.number_ants / self.number_process)
-
-        for j in range(self.number_iterations):
-            print(j)
-            # Divide as formigas entre os processos
-            argumentos = [
-                (self.ants[i * ants_per_process: (i + 1) * ants_per_process], self.grid, i)
-                for i in range(self.number_process)
-            ]
-
-            best_ants = []
-            best_ant = None
-            with mp.Pool(self.number_process) as pool:
-                # Isso já faz join automaticamente no final
-                best_ant = pool.map(worker, argumentos)
-                # print("retorno", best_ant)
-                best_ants.extend(best_ant)
-
-            best_ant = min((ant for ant in best_ants if ant.reached_goal), key=lambda a: a.cost, default=None)
-
-            if best_ant:
-                # print("Melhor custo", best_ant.cost)
-                best_ant.update_pheromone(self.grid, Q=1.0)
-
-        self.print_grid(best_ant)
-        # self.save_grid_to_json(f"grid_{self.number_rows}x{self.number_cols}.json")
 
     def send_broadcast_msg(self, msg):
         for connection in self.connections:
@@ -203,7 +169,6 @@ class Environment:
         self.send_broadcast_msg(None)
 
         self.print_grid(best_ant)
-        # self.save_grid_to_json(f"grid_{self.number_rows}x{self.number_cols}.json")
 
 def worker_pipie(ants, grid, id, connection_to_main):
     try:
@@ -212,13 +177,11 @@ def worker_pipie(ants, grid, id, connection_to_main):
                 ant.reset()
                 ant.run(grid)
 
-            # Select the best ant that reached the goal
             best_ant = min((ant for ant in ants if ant.reached_goal), key=lambda a: a.cost, default=None)
 
             try:
                 connection_to_main.send(best_ant if best_ant else ants[-1])
             except (BrokenPipeError, EOFError):
-                # Pipe fechado, encerra o processo
                 return
 
             grid = connection_to_main.recv()
@@ -226,15 +189,3 @@ def worker_pipie(ants, grid, id, connection_to_main):
                 return
     except (BrokenPipeError, EOFError):
         return
-
-def worker(args):
-    ants, grid, id = args
-    for ant in ants:
-        ant.reset()
-        ant.run(grid)
-
-    # Select the best ant that reached the goal
-    best_ant = min((ant for ant in ants if ant.reached_goal), key=lambda a: a.cost, default=None)
-    # print(f"Melhor formuga {best_ant} - id {id}")
-    # print(id)
-    return best_ant if best_ant else ants[-1]

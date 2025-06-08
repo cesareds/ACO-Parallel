@@ -62,7 +62,6 @@ def main():
             number_rows=GRID_SCALE[1], 
             number_ants=NUM_ANTS, 
             number_process=NUM_PROCESS,
-            number_obstacles=1, 
             number_iterations=NUM_ITERATIONS, 
             goalx=GOAL[0], 
             goaly=GOAL[1],
