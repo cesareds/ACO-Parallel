@@ -5,6 +5,9 @@ import os
 # Detectar o nome do sistema para abrir o arquivo correto
 name = os.uname().sysname
 filename = f"tempos{name}.txt"
+filename = "temposLinux.txt"
+filename = "tempos110.txt"
+filename = "temposDarwin2025-06-08_02-14-57.txt"
 
 # Inicialização
 tempos = {}
@@ -21,7 +24,9 @@ for linha in linhas:
         tempos[n_procs].append(float(linha.strip()))
 
 # Cálculo de médias e speedup
-medias = {k: sum(v) / len(v) for k, v in tempos.items()}
+medias = {k: sum(v) / len(v) for k, v in tempos.items() if len(v) > 0}
+if 1 not in medias:
+    raise ValueError("Não há tempos registrados para 1 processo (execução sequencial).")
 tempo_seq = medias[1]
 speedup = {k: tempo_seq / v for k, v in medias.items()}
 

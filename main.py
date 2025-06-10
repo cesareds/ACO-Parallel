@@ -45,17 +45,15 @@ Serial = Parallel with 1 process !
 """
 
 def main():
-    if len(sys.argv) < 6:
-        print("Bad usage! Must receive 6 arguments")
-        exit
-
     NUM_PROCESS = int(sys.argv[1]) if len(sys.argv) > 1 else 1 
-    print(NUM_PROCESS)
-
     GRID_SCALE = (int(sys.argv[2]), int(sys.argv[3]))
     NUM_ANTS = int(sys.argv[4])
     NUM_ITERATIONS = int(sys.argv[5])
     GOAL = (int(int(sys.argv[2])/2), int(int(sys.argv[3])/2))
+
+    EVAPORATION_RATE = float(sys.argv[6]) if len(sys.argv) > 6 else 1.0
+    ALPHA = float(sys.argv[7]) if len(sys.argv) > 7 else 1.0
+    BETA = float(sys.argv[8]) if len(sys.argv) > 8 else 1.0
 
     env = Environment(
             number_cols=GRID_SCALE[0], 
@@ -65,7 +63,9 @@ def main():
             number_iterations=NUM_ITERATIONS, 
             goalx=GOAL[0], 
             goaly=GOAL[1],
-            load_grid=False
+            alpha=ALPHA,
+            beta=BETA,
+            evaporation_rate=EVAPORATION_RATE,
         )
     if(NUM_PROCESS == 1):
         env.optimize()
