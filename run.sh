@@ -1,19 +1,31 @@
 #!/bin/bash
 
+rm grids/*
+rm runs/*
+
+export LC_NUMERIC=C
+
 TIMEFORMAT=%R
 PROCESSADORES=$(nproc)
-NAME=$(uname)
-ARQUIVO="tempos$NAME.txt"
+DIRETORIO="$(pwd)/runs"
 
-# Limpa o arquivo antes de escrever
-> "$ARQUIVO"
+mkdir -p "$DIRETORIO"
 
-for j in $(seq 1 $PROCESSADORES); do
-    echo "Rodando com $j processo(s)" | tee -a "$ARQUIVO"
-    for i in $(seq 1 5); do
-        echo "Execução $i:"
-        exec_time=$( { time python3 main.py $j 90 180 1000 1000 > /dev/null; } 2>&1 )
-        echo "$exec_time" | tee -a "$ARQUIVO"
+for alpha in $(seq 1.0 0.5 2.0); do
+    for beta in $(seq 2.0 1.5 5.0); do
+        for evaporation_rate in $(seq 0.1 0.25 0.6); do
+            ARQUIVO_ITER="$DIRETORIO/tempos_${alpha}_${beta}_${evaporation_rate}.txt"
+            touch $ARQUIVO_ITER
+            
+            for j in $(seq 1 $PROCESSADORES); do
+            echo "Rodando com $j processo(s), alpha=$alpha, beta=$beta, evap=$evaporation_rate" | tee -a "$ARQUIVO_ITER"
+                for i in $(seq 1 10); do
+                    echo "Execução $i:" | tee -a "$ARQUIVO_ITER"
+                    exec_time=$( { time python3 main.py "$j" 50 50 1000 1000 "$evaporation_rate" "$alpha" "$beta" "$i"; } 2>&1 )
+                    echo "$exec_time" | tee -a "$ARQUIVO_ITER"
+                done
+            done
+            echo | tee -a "$ARQUIVO_ITER"
+        done
     done
-    echo | tee -a "$ARQUIVO"
 done
