@@ -1,2 +1,0 @@
-Rodando com 1 processo(s), alpha=1, beta=2, evap=0.1
-Execução 1:

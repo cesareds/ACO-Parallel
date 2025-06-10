@@ -55,6 +55,9 @@ def main():
     ALPHA = float(sys.argv[7]) if len(sys.argv) > 7 else 1.0
     BETA = float(sys.argv[8]) if len(sys.argv) > 8 else 1.0
 
+    FILE = int(sys.argv[9])
+
+
     env = Environment(
             number_cols=GRID_SCALE[0], 
             number_rows=GRID_SCALE[1], 
@@ -66,6 +69,7 @@ def main():
             alpha=ALPHA,
             beta=BETA,
             evaporation_rate=EVAPORATION_RATE,
+            file=FILE,
         )
     if(NUM_PROCESS == 1):
         env.optimize()

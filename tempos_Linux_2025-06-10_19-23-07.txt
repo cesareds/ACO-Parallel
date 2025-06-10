@@ -1,0 +1,6 @@
+Rodando com 1 processo(s), alpha=1.0, beta=2.0, evap=0.10
+Rodando com 1 processo(s), alpha=1.0, beta=2.0, evap=0.35
+Rodando com 1 processo(s), alpha=1.0, beta=2.0, evap=0.60
+Rodando com 1 processo(s), alpha=1.0, beta=3.5, evap=0.10
+Rodando com 1 processo(s), alpha=1.0, beta=3.5, evap=0.35
+Rodando com 1 processo(s), alpha=1.0, beta=3.5, evap=0.60

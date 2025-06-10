@@ -5,7 +5,7 @@ from colorama import init, Fore, Style
 import multiprocessing as mp
 
 class Environment:
-    def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_iterations: int, goalx: int, goaly: int, alpha: float, beta: float, evaporation_rate: float) -> None:
+    def __init__(self, number_cols: int, number_rows: int, number_ants: int, number_process: int, number_iterations: int, goalx: int, goaly: int, alpha: float, beta: float, evaporation_rate: float, file: int) -> None:
         self.grid = []
         self.number_cols = number_cols
         self.number_rows = number_rows
@@ -13,6 +13,9 @@ class Environment:
         self.number_process = number_process
         self.number_iterations = number_iterations
         self.evaporation_rate = evaporation_rate
+        self.alpha = alpha
+        self.beta = beta
+        self.file = file
 
         """
         Lista com conexoes para os processos que estao rodando em paralelo
@@ -25,7 +28,7 @@ class Environment:
 
 
         try:
-            self.load_grid_from_json(f"grid_{self.number_rows}x{self.number_cols}.json")
+            self.load_grid_from_json(f"grids/grid_{self.number_rows}x{self.number_cols}.json")
         except FileNotFoundError:
             for _ in range(self.number_rows):
                 row = []
@@ -72,7 +75,6 @@ class Environment:
     def optimize(self):
         best_ant_ever = None
         for it in range(self.number_iterations):
-            print(f"Iteração {it}")
             for ant in self.ants:
                 ant.reset()
                 ant.run(self.grid)
@@ -83,8 +85,8 @@ class Environment:
                 best_ant.update_pheromone(self.grid, Q=1.0)
 
             self.evaporate_pheromones()
-        if best_ant_ever:
-            print("Cost final: ", best_ant_ever.cost)
+
+        print("Cost final: ", best_ant_ever.cost if best_ant_ever else "Nenhum ant alcançou o objetivo")
         self.print_grid(best_ant_ever)
 
     def evaporate_pheromones(self):
@@ -127,7 +129,7 @@ class Environment:
             for line in output_lines:
                 f.write(line + "\n")
             
-        self.save_grid_to_json(f"grids/grid_{self.number_rows}x{self.number_cols}_solved.json")
+        self.save_grid_to_json(f"grids/grid_{self.number_rows}x{self.number_cols}_{self.alpha}_{self.beta}_{self.evaporation_rate}_{self.file}_solved.json")
 
 
     def send_broadcast_msg(self, msg):
@@ -161,7 +163,6 @@ class Environment:
 
         best_ant_ever = None
         for j in range(self.number_iterations-1):
-            # print(j)
 
             best_ant = self.get_best_ant()
 
@@ -173,9 +174,9 @@ class Environment:
             self.evaporate_pheromones()
             self.send_broadcast_msg(self.grid)
 
-        print(best_ant_ever.cost if best_ant_ever else "Nenhum ant alcançou o objetivo")
+        print("Cost final: ", best_ant_ever.cost if best_ant_ever else "Nenhum ant alcançou o objetivo")
         self.send_broadcast_msg(None)
-        # self.print_grid(best_ant)
+        self.print_grid(best_ant_ever)
 
 def worker_pipie(ants, grid, id, connection_to_main):
     try:
