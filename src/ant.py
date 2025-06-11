@@ -1,150 +1,92 @@
-import math
-import random
+import cupy as cp
 
 class Ant:
-    """
-    Ants represent the drones from the original problem.
-    Each ant has a current position, a list of visited nodes, and logic for movement and pheromone updates.
-    """
-    def __init__(self, start: tuple, goal: tuple, alpha: float, beta: float, number_cols: int, number_rows: int) -> None:
-        self.goal           = goal
-        self.start          = start
-        self.cur_position   = (self.start[0], self.start[1])
-        self.visited_nodes  = [self.cur_position]
-        self.alpha          = alpha
-        self.beta           = beta
-        self.reached_goal   = False
-        self.number_cols    = number_cols
-        self.number_rows    = number_rows
+    def __init__(self, start, goal, alpha, beta, number_cols, number_rows):
+        self.start = start
+        self.goal = goal
+        self.alpha = alpha
+        self.beta = beta
+        self.number_cols = number_cols
+        self.number_rows = number_rows
+        self.reset()
 
-    @property
-    def cost(self) -> int:
-        return len(self.visited_nodes)
+    def reset(self):
+        self.position = self.start
+        self.visited_nodes = [self.position]
+        self.cost = 0.0
+        self.reached_goal = False
 
-    def manhattan_distance(self, x1, y1, x2, y2) -> int:
-        dx = min(abs(x1 - x2), self.number_rows - abs(x1 - x2))
-        dy = min(abs(y1 - y2), self.number_cols - abs(y1 - y2))
-        return dx + dy
+    def run(self, grid_values, pheromones):
+        while not self.reached_goal:
+            moves = self.get_valid_moves(grid_values)
+            if not moves:
+                break
+            probs = self.calculate_probabilities(moves, pheromones)
+            next_move = self.select_move(moves, probs)
+            self.move(next_move)
 
-    def reset(self) -> None:
-        self.cur_position   = (self.start[0], self.start[1])
-        self.visited_nodes  = [self.cur_position]
-        self.reached_goal   = False 
+            if self.position == self.goal:
+                self.reached_goal = True
 
-    def get_direction(self, from_pos: tuple, to_pos: tuple):
-        x1, y1 = from_pos
-        x2, y2 = to_pos
+    def get_valid_moves(self, grid_values):
+        directions = {
+            "up":    (-1, 0, 0),
+            "down":  (1, 0, 1),
+            "left":  (0, -1, 2),
+            "right": (0, 1, 3)
+        }
 
-        if (x1 - x2) % self.number_rows == 1:
-            return "up"
-        elif (x2 - x1) % self.number_rows == 1:
-            return "down"
-        elif (y1 - y2) % self.number_cols == 1:
-            return "left"
-        elif (y2 - y1) % self.number_cols == 1:
-            return "right"
-        return None
+        valid_moves = []
+        x, y = self.position
 
-    def get_pheromone(self, from_pos: tuple, to_pos: tuple, grid: list[list[dict]]) -> float:
-        x1, y1 = from_pos
-        
-        direction = self.get_direction(from_pos, to_pos)
+        for name, (dx, dy, dir_idx) in directions.items():
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < self.number_rows and 0 <= ny < self.number_cols:
+                if grid_values[nx, ny] != -1 and (nx, ny) not in self.visited_nodes:
+                    valid_moves.append(((nx, ny), dir_idx))
+        return valid_moves
 
-        if direction:
-            return grid[x1][y1]["pheromones"].get(direction, 1e-6)
-        return 1e-6  # invalid movement
+    def calculate_probabilities(self, moves, pheromones):
+        x, y = self.position
+        probs = []
+        total = cp.float32(0.0)
 
-    def neighbors_probabilities(self, allowed_nodes: list[tuple], grid: list[list[dict]]) -> list[float]:
-        probabilities = []
-        denominator = 0.0
+        for (nx, ny), dir_idx in moves:
+            pheromone = pheromones[x, y, dir_idx]
+            heuristic = 1.0 / (cp.linalg.norm(cp.array([nx - self.goal[0], ny - self.goal[1]])) + 1e-6)
+            val = (pheromone ** self.alpha) * (heuristic ** self.beta)
+            probs.append(val)
+            total += val
 
-        for node in allowed_nodes:
-            tau = self.get_pheromone(self.cur_position, node, grid)
-            eta = 1 / (self.manhattan_distance(self.cur_position[0], self.cur_position[1], node[0], node[1]))   
-            prob = (tau ** self.alpha) * (eta ** self.beta)
+        return cp.array(probs) / (total + 1e-10)
 
-            probabilities.append(prob)
-            denominator += prob
+    def select_move(self, moves, probabilities):
+        idx = cp.random.choice(cp.arange(len(moves)), p=probabilities).item()
+        return moves[idx]
 
-        if denominator == 0:
-            return [1 / len(allowed_nodes)] * len(allowed_nodes)
+    def move(self, move):
+        new_position, _ = move
+        self.visited_nodes.append(new_position)
+        self.cost += 1.0
+        self.position = new_position
 
-        return [p / denominator for p in probabilities]
-
-    def move(self, next_position: tuple, grid: list[list[dict]]) -> None:
-        self.cur_position = next_position
-        self.visited_nodes.append(next_position)
-
-        x, y = next_position
-        if grid[x][y]["value"] == 1:
-            self.reached_goal = True
-
-    def get_neighbors(self, grid: list[list[dict]]) -> list[tuple]:
-        x, y = self.cur_position
-        neighbors = []
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-
-        for dx, dy in directions:
-            new_x, new_y = x + dx, y + dy
-
-            if new_x < 0:
-                new_x = self.number_rows - 1
-            elif new_x >= self.number_rows:
-                new_x = 0
-            if new_y < 0:
-                new_y = self.number_cols - 1
-            elif new_y >= self.number_cols:
-                new_y = 0
-
-            if grid[new_x][new_y]["value"] >= 0 and (new_x, new_y) not in self.visited_nodes:
-                neighbors.append((new_x, new_y))
-
-        return neighbors
-
-    def update_pheromone(self, grid: list[list[dict]], Q: float) -> None:
-        """
-        Updates the pheromone levels on the edges traversed by the ant.
-        :param grid: the environment grid
-        :param Q: pheromone deposit constant
-        """
+    def update_pheromone(self, pheromones, Q=1.0):
         for i in range(len(self.visited_nodes) - 1):
-            from_node = self.visited_nodes[i]
-            to_node = self.visited_nodes[i + 1]
+            x1, y1 = self.visited_nodes[i]
+            x2, y2 = self.visited_nodes[i + 1]
 
-            x1, y1 = from_node
-                
-            direction = self.get_direction(from_node, to_node)
+            if x2 == x1 - 1 and y2 == y1:
+                dir_idx = 0  # up
+            elif x2 == x1 + 1 and y2 == y1:
+                dir_idx = 1  # down
+            elif x2 == x1 and y2 == y1 - 1:
+                dir_idx = 2  # left
+            elif x2 == x1 and y2 == y1 + 1:
+                dir_idx = 3  # right
+            else:
+                continue
 
-
-            if direction:
-                current_pheromone = grid[x1][y1]["pheromones"].get(direction, 0)
-                grid[x1][y1]["pheromones"][direction] = current_pheromone + Q / self.cost
-
-    def choose_move(self, grid: list[list[dict]]) -> bool:
-        if self.reached_goal:
-            return False
-
-        neighbors = self.get_neighbors(grid)
-        if not neighbors:
-            return False
-
-        probs = self.neighbors_probabilities(neighbors, grid)
-        next_pos = random.choices(neighbors, weights=probs)[0]
-        self.move(next_pos, grid)
-        return True
-
-    def run(self, grid: list[list[dict]]) -> int:
-        """
-        Executes the ant's movement through the environment.
-        Should be called after initialization or reset.
-        """
-        step = 0
-        keep_going = True
-        while keep_going:
-            step += 1
-            keep_going = self.choose_move(grid=grid)
-    
-        return self.cost
+            pheromones[x1, y1, dir_idx] += Q / self.cost
 
     def __str__(self) -> str:
-        return f"Ant at {self.cur_position}, visited: {self.visited_nodes}, Cost: {self.cost}"
+        return f"Ant at {self.position}, visited: {self.visited_nodes}, Cost: {self.cost}"
