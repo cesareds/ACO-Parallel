@@ -127,6 +127,12 @@ class Ant:
         neighbors = self.get_neighbors(grid)
         if not neighbors:
             return False
+        
+        for neighbor in neighbors:
+            x, y = neighbor
+            if grid[x][y]["value"] == 1:
+                self.move(neighbor, grid)
+                return True
 
         probs = self.neighbors_probabilities(neighbors, grid)
         next_pos = random.choices(neighbors, weights=probs)[0]

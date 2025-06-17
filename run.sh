@@ -21,7 +21,7 @@ for alpha in $(seq 1.0 0.5 2.0); do
             echo "Rodando com $j processo(s), alpha=$alpha, beta=$beta, evap=$evaporation_rate" | tee -a "$ARQUIVO_ITER"
                 for i in $(seq 1 10); do
                     echo "Execução $i:" | tee -a "$ARQUIVO_ITER"
-                    exec_time=$( { time python3 main.py "$j" 50 50 1000 1000 "$evaporation_rate" "$alpha" "$beta" "$i"; } 2>&1 )
+                    exec_time=$( { time python3 main.py "$j" 50 50 500 500 "$evaporation_rate" "$alpha" "$beta" "$i"; } 2>&1 )
                     echo "$exec_time" | tee -a "$ARQUIVO_ITER"
                 done
             done
