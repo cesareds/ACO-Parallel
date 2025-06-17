@@ -1,13 +1,13 @@
 #!/bin/bash
 
-rm grids/*
-rm runs/*
+rm grids2/*
+rm runs2/*
 
 export LC_NUMERIC=C
 
 TIMEFORMAT=%R
 PROCESSADORES=$(nproc)
-DIRETORIO="$(pwd)/runs"
+DIRETORIO="$(pwd)/runs2"
 
 mkdir -p "$DIRETORIO"
 
